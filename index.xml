@@ -6,14 +6,21 @@
     <description>Recent content on Genghong Hu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Mar 2024 16:06:02 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2024 16:15:07 +0800</lastBuildDate>
     <atom:link href="https://godhu777777.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>https://godhu777777.github.io/posts/test/</link>
-      <pubDate>Sat, 30 Mar 2024 16:06:02 +0800</pubDate>
-      <guid>https://godhu777777.github.io/posts/test/</guid>
-      <description></description>
+      <title>Booth or Not?</title>
+      <link>https://godhu777777.github.io/posts/boothmultiply/</link>
+      <pubDate>Sat, 30 Mar 2024 16:15:07 +0800</pubDate>
+      <guid>https://godhu777777.github.io/posts/boothmultiply/</guid>
+      <description>Source 这周三计组课上，老师在讲乘法运算的时候给我们讲了两种运算方式，分别是朴素的方法和Booth法，并以000111111000111111这个例子（类似如此）来说明Booth法的优势：可以做更少的加减法。但当时在课堂上便存有疑问，因为从统计概率上来讲，朴素的方法需要做加减法的次数（0和1，50%）和Booth法（00，01，10，11，25% + 25% = 50%）应该一致，但是google了一下也是说Booth法可以做更少的加减法（其实是我看漏了上下文，原文如下）&#xA;Booth&amp;rsquo;s algorithm follows this old scheme by performing an addition when it encounters the first digit of a block of ones (0 1) and subtraction when it encounters the end of the block (1 0). This works for a negative multiplier as well. When the ones in a multiplier are grouped into long blocks, Booth&amp;rsquo;s algorithm performs fewer additions and subtractions than the normal multiplication algorithm.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>https://godhu777777.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://godhu777777.github.io/about/</guid>
+      <description>Hi, there!&#xA;I am a sophomore majoring in IoT at Xidian University.&#xA;I have great interests in Computer Science💻, basketball🏀 and FPS games🔫.</description>
     </item>
   </channel>
 </rss>

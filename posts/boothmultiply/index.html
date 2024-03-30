@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Booth or Not? // Genghong Hu</title>
+    <link rel="shortcut icon" href="https://s2.loli.net/2024/03/30/FVAvYip5yh1Obrz.jpg" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.124.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.5b1fcc8902588589c4767187402a3c29f8b8d7a6fdef6d9f8f77045bb0d14fee.css" />
+    
+
+    
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Booth or Not?"/>
+<meta name="twitter:description" content="Source 这周三计组课上，老师在讲乘法运算的时候给我们讲了两种运算方式，分别是朴素的方法和Booth法，并以000111111000111111这个例子（类似如此）来说明Booth法的优势：可以做更少的加减法。但当时在课堂上便存有疑问，因为从统计概率上来讲，朴素的方法需要做加减法的次数（0和1，50%）和Booth法（00，01，10，11，25% &#43; 25% = 50%）应该一致，但是google了一下也是说Booth法可以做更少的加减法（其实是我看漏了上下文，原文如下）
+Booth&rsquo;s algorithm follows this old scheme by performing an addition when it encounters the first digit of a block of ones (0 1) and subtraction when it encounters the end of the block (1 0). This works for a negative multiplier as well. When the ones in a multiplier are grouped into long blocks, Booth&rsquo;s algorithm performs fewer additions and subtractions than the normal multiplication algorithm."/>
+
+    <meta property="og:title" content="Booth or Not?" />
+<meta property="og:description" content="Source 这周三计组课上，老师在讲乘法运算的时候给我们讲了两种运算方式，分别是朴素的方法和Booth法，并以000111111000111111这个例子（类似如此）来说明Booth法的优势：可以做更少的加减法。但当时在课堂上便存有疑问，因为从统计概率上来讲，朴素的方法需要做加减法的次数（0和1，50%）和Booth法（00，01，10，11，25% &#43; 25% = 50%）应该一致，但是google了一下也是说Booth法可以做更少的加减法（其实是我看漏了上下文，原文如下）
+Booth&rsquo;s algorithm follows this old scheme by performing an addition when it encounters the first digit of a block of ones (0 1) and subtraction when it encounters the end of the block (1 0). This works for a negative multiplier as well. When the ones in a multiplier are grouped into long blocks, Booth&rsquo;s algorithm performs fewer additions and subtractions than the normal multiplication algorithm." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://godhu777777.github.io/posts/boothmultiply/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-30T16:15:07+08:00" />
+<meta property="article:modified_time" content="2024-03-30T16:15:07+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://godhu777777.github.io/"><img class="app-header-avatar" src="https://s2.loli.net/2024/03/30/FVAvYip5yh1Obrz.jpg" alt="John Doe" /></a>
+      <span class="app-header-title">Genghong Hu</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Time won&#39;t lie.</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/GodHu777777" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/GenghongHu2004" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Booth or Not?</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 30, 2024
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h2 id="source">Source</h2>
+<p>这周三计组课上，老师在讲乘法运算的时候给我们讲了两种运算方式，分别是朴素的方法和Booth法，并以<code>000111111000111111</code>这个例子（类似如此）来说明Booth法的优势：可以做更少的加减法。但当时在课堂上便存有疑问，因为从统计概率上来讲，朴素的方法需要做加减法的次数（0和<strong>1</strong>，50%）和Booth法（00，<strong>01</strong>，<strong>10</strong>，11，25% + 25% = 50%）应该一致，<del>但是google了一下也是说Booth法可以做更少的加减法</del>（其实是我看漏了上下文，<a href="https://en.wikipedia.org/wiki/Booth%27s_multiplication_algorithm#:~:text=Booth's%20multiplication%20algorithm%20is%20a,Birkbeck%20College%20in%20Bloomsbury%2C%20London.">原文如下</a>）</p>
+<blockquote>
+<p>Booth&rsquo;s algorithm follows this old scheme by performing an addition when it encounters the first digit of a block of ones (0 1) and subtraction when it encounters the end of the block (1 0). This works for a negative multiplier as well. <strong>When the ones in a multiplier are grouped into long blocks,</strong> Booth&rsquo;s algorithm performs fewer additions and subtractions than the normal multiplication algorithm.</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2024/03/29/PMCIXeyqrbiDWBE.png" alt="Booth"></p>
+<h2 id="try">Try</h2>
+<p>带着疑问课后借助chatGPT写了如下python代码，具体逻辑已注释在代码中，结果很意外：Booth竟然还不如朴素的方法。个人理解可能是<code>010</code>这种串出现的概率比较高，导致Booth法出现劣势。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Booth.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 枚举长度为length的01串</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_binary_strings</span>(length):
+</span></span><span style="display:flex;"><span>    binary_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">*</span> length
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">yield</span> binary_string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        i <span style="color:#f92672">=</span> length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> binary_string[i] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;1&#39;</span>:
+</span></span><span style="display:flex;"><span>            i <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        binary_string <span style="color:#f92672">=</span> binary_string[:i] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">*</span> (length <span style="color:#f92672">-</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">yield</span> binary_string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Booth win</span>
+</span></span><span style="display:flex;"><span>win <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Booth lose</span>
+</span></span><span style="display:flex;"><span>lose <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># make a balance</span>
+</span></span><span style="display:flex;"><span>tie <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置01串长度为n</span>
+</span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">17</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> binary_string <span style="color:#f92672">in</span> generate_binary_strings(n):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(binary_string)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    random_string <span style="color:#f92672">=</span> binary_string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Booth算法需要补0</span>
+</span></span><span style="display:flex;"><span>    random_string <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;0&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># cnt1是Booth算法需要的计算次数</span>
+</span></span><span style="display:flex;"><span>    cnt1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># cnt2是朴素算法需要的计算次数</span>
+</span></span><span style="display:flex;"><span>    cnt2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    one <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, n):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 如果相邻两个字符不是00/11组合 则需要计算一次加/减法</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ord(random_string[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]) <span style="color:#f92672">-</span> ord(random_string[i]) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            cnt1 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, n):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 如果当前字符为‘1’ 则需要计算一次加/减法</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ord(random_string[i]) <span style="color:#f92672">==</span> ord(one):
+</span></span><span style="display:flex;"><span>            cnt2 <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Booth需要的次数多 则为失败</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> cnt1 <span style="color:#f92672">&gt;</span> cnt2:
+</span></span><span style="display:flex;"><span>        lose <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Booth需要的次数少 则为胜利</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> cnt1 <span style="color:#f92672">&lt;</span> cnt2:
+</span></span><span style="display:flex;"><span>        win <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 二者次数相同 打平</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        tie <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(random_string)    </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;win: &#34;</span> <span style="color:#f92672">+</span> str(win))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;lose: &#34;</span> <span style="color:#f92672">+</span> str(lose))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;tie: &#34;</span> <span style="color:#f92672">+</span> str(tie))
+</span></span></code></pre></div><p>部分运行结果如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># n = 10</span>
+</span></span><span style="display:flex;"><span>$ python3 Booth.py
+</span></span><span style="display:flex;"><span>win: <span style="color:#ae81ff">371</span>
+</span></span><span style="display:flex;"><span>lose: <span style="color:#ae81ff">464</span>
+</span></span><span style="display:flex;"><span>tie: <span style="color:#ae81ff">189</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># n = 17</span>
+</span></span><span style="display:flex;"><span>$ python3 Booth.py
+</span></span><span style="display:flex;"><span>win: <span style="color:#ae81ff">51962</span>
+</span></span><span style="display:flex;"><span>lose: <span style="color:#ae81ff">60917</span>
+</span></span><span style="display:flex;"><span>tie: <span style="color:#ae81ff">18193</span>
+</span></span></code></pre></div><p>显然，可以有更大的n的选择，周五上课前跟老师交流后，也建议我可以试一下 n = 32 的情况，不过可能需要较长的时间就没去做，欢迎尝试。</p>
+<h2 id="summary">Summary</h2>
+<p>多思考，不一味接受。</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
