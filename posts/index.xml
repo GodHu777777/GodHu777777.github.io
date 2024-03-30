@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Genghong Hu</title>
+    <link>https://godhu777777.github.io/posts/</link>
+    <description>Recent content in Posts on Genghong Hu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 30 Mar 2024 16:06:02 +0800</lastBuildDate>
+    <atom:link href="https://godhu777777.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test</title>
+      <link>https://godhu777777.github.io/posts/test/</link>
+      <pubDate>Sat, 30 Mar 2024 16:06:02 +0800</pubDate>
+      <guid>https://godhu777777.github.io/posts/test/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
