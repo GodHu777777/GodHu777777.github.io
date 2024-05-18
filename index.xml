@@ -2,24 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Genghong Hu</title>
-    <link>https://godhu777777.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Genghong Hu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Mar 2024 16:15:07 +0800</lastBuildDate>
-    <atom:link href="https://godhu777777.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 May 2024 10:47:28 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VMwareProxy</title>
+      <link>http://localhost:1313/posts/vmwareproxy/</link>
+      <pubDate>Fri, 17 May 2024 10:47:28 +0800</pubDate>
+      <guid>http://localhost:1313/posts/vmwareproxy/</guid>
+      <description>环境 Windows11 (物理机)&#xA;VMware Workstation Pro 17&#xA;Ubuntu 22.04 (虚拟机)&#xA;Step1 windows上的clash打开allow lan&#xA;我这里用的是clash verge, cfw 也差不多&#xA;Step2 在windows打开一个teminal（cmd/powershell/&amp;hellip;），输入ipconfig命令，并记录宿主机的IP&#xA;Step3 打开ubuntu，Settings-&amp;gt;Network-&amp;gt;Network Proxy，设置为Manual并修改HTTP,HTTPS为如图&#xA;现在你已经配置好了，surf the Internet freely!</description>
+    </item>
     <item>
       <title>Booth or Not?</title>
-      <link>https://godhu777777.github.io/posts/boothmultiply/</link>
+      <link>http://localhost:1313/posts/boothmultiply/</link>
       <pubDate>Sat, 30 Mar 2024 16:15:07 +0800</pubDate>
-      <guid>https://godhu777777.github.io/posts/boothmultiply/</guid>
+      <guid>http://localhost:1313/posts/boothmultiply/</guid>
       <description>Source 这周三计组课上，老师在讲乘法运算的时候给我们讲了两种运算方式，分别是朴素的方法和Booth法，并以000111111000111111这个例子（类似如此）来说明Booth法的优势：可以做更少的加减法。但当时在课堂上便存有疑问，因为从统计概率上来讲，朴素的方法需要做加减法的次数（0和1，50%）和Booth法（00，01，10，11，25% + 25% = 50%）应该一致，但是google了一下也是说Booth法可以做更少的加减法（其实是我看漏了上下文，原文如下）&#xA;Booth&amp;rsquo;s algorithm follows this old scheme by performing an addition when it encounters the first digit of a block of ones (0 1) and subtraction when it encounters the end of the block (1 0). This works for a negative multiplier as well. When the ones in a multiplier are grouped into long blocks, Booth&amp;rsquo;s algorithm performs fewer additions and subtractions than the normal multiplication algorithm.</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://godhu777777.github.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://godhu777777.github.io/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>Hi, there!&#xA;I am a sophomore majoring in IoT at Xidian University.&#xA;I have great interests in Computer Science💻, basketball🏀 and FPS games🔫.</description>
     </item>
   </channel>
