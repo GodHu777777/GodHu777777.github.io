@@ -6,8 +6,15 @@
     <description>Recent content on Genghong Hu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 30 Mar 2024 16:15:07 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2024 10:47:28 +0800</lastBuildDate>
     <atom:link href="https://godhu777777.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VMwareProxy</title>
+      <link>https://godhu777777.github.io/posts/vmwareproxy/</link>
+      <pubDate>Fri, 17 May 2024 10:47:28 +0800</pubDate>
+      <guid>https://godhu777777.github.io/posts/vmwareproxy/</guid>
+      <description>环境 Windows11 (物理机)&#xA;VMware Workstation Pro 17&#xA;Ubuntu 22.04 (虚拟机)&#xA;Step1 windows上的clash打开allow lan&#xA;我这里用的是clash verge, cfw 也差不多&#xA;Step2 在windows打开一个teminal（cmd/powershell/&amp;hellip;），输入ipconfig命令，并记录宿主机的IP&#xA;Step3 打开ubuntu，Settings-&amp;gt;Network-&amp;gt;Network Proxy，设置为Manual并修改HTTP,HTTPS为如图&#xA;现在你已经配置好了，surf the Internet freely!</description>
+    </item>
     <item>
       <title>Booth or Not?</title>
       <link>https://godhu777777.github.io/posts/boothmultiply/</link>
